@@ -1,0 +1,25 @@
+MODELO:
+
+USER:
+  - Nome
+  - Email
+  - Senha (criptografada)
+  - Endereço
+  - Foto de Perfil (link que vai ficar na amazon)
+  - Pets (Lista do objeto Pet)
+
+PET:
+  - Nome
+  - Descrição
+  - Raça
+  - Espécie (cachorro, gato, etc)
+  - Foto de Perfil (link que vai ficar na amazon)
+  - Available (Booleano que define se ele já foi adotado ou não)
+
+ROTAS:
+  - /register (Cadastrar novo usuário)
+  - /login (Login de usuário)
+  - /usuario/id/pets (Pra ver os pets de determinado usuário)
+  - /pets (Pra poder ver todos os pets)
+  - /pets/id (Pra poder ver um pet específico)
+  - /pets/id/adopt (Pra poder adotar um pet)
