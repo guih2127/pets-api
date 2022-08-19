@@ -1,7 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { PetsService } from './pets.service';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { CreatePetDto } from './dto/create-pet.dto';
 import { UpdatePetDto } from './dto/update-pet.dto';
+import { PetsService } from './pets.service';
 
 @Controller('pets')
 export class PetsController {
@@ -9,12 +17,25 @@ export class PetsController {
 
   @Post()
   create(@Body() createPetDto: CreatePetDto) {
-    return this.petsService.create(createPetDto);
+    const { name, description, avatar, available, userId, speciesId } =
+      createPetDto;
+    return this.petsService.create({
+      name,
+      description,
+      avatar,
+      available,
+      user: {
+        connect: { id: userId },
+      },
+      species: {
+        connect: { id: speciesId },
+      },
+    });
   }
 
   @Get()
   findAll() {
-    return this.petsService.findAll();
+    return this.petsService.findAll({});
   }
 
   @Get(':id')
