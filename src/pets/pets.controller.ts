@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { Pet } from '@prisma/client';
 import { CreatePetDto } from './dto/create-pet.dto';
 import { UpdatePetDto } from './dto/update-pet.dto';
 import { PetsService } from './pets.service';
@@ -16,10 +17,10 @@ export class PetsController {
   constructor(private readonly petsService: PetsService) {}
 
   @Post()
-  create(@Body() createPetDto: CreatePetDto) {
+  async create(@Body() createPetDto: CreatePetDto): Promise<Pet> {
     const { name, description, avatar, available, userId, speciesId } =
       createPetDto;
-    return this.petsService.create({
+    return await this.petsService.create({
       name,
       description,
       avatar,
@@ -34,8 +35,8 @@ export class PetsController {
   }
 
   @Get()
-  findAll() {
-    return this.petsService.findAll({});
+  async findAll(): Promise<Pet[]> {
+    return await this.petsService.findAll({});
   }
 
   @Get(':id')

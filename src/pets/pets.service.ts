@@ -6,13 +6,13 @@ import { PrismaService } from 'src/prisma.service';
 export class PetsService {
   constructor(private prisma: PrismaService) {}
 
-  create(data: Prisma.PetCreateInput): Promise<Pet> {
-    return this.prisma.pet.create({
+  async create(data: Prisma.PetCreateInput): Promise<Pet> {
+    return await this.prisma.pet.create({
       data,
     });
   }
 
-  findAll(params?: {
+  async findAll(params?: {
     skip?: number;
     take?: number;
     cursor?: Prisma.PetWhereUniqueInput;
@@ -20,13 +20,19 @@ export class PetsService {
     orderBy?: Prisma.PetOrderByWithRelationInput;
   }): Promise<Pet[]> {
     const { skip, take, cursor, where, orderBy } = params;
-    return this.prisma.pet.findMany({
+    const pets = await this.prisma.pet.findMany({
       skip,
       take,
       cursor,
       where,
       orderBy,
+      include: {
+        user: true,
+        species: true,
+      },
     });
+
+    return pets;
   }
 
   findOne(id: number) {
