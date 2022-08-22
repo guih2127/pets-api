@@ -7,7 +7,10 @@ import {
   Param,
   Patch,
   Post,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { User } from '@prisma/client';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -31,19 +34,18 @@ export class UsersController {
     });
   }
 
+  @UseGuards(AuthGuard('local'))
+  @Post('auth/login')
+  async login(@Request() req) {
+    return req.user;
+  }
+
   @Get()
   async findAll(): Promise<UserDto[]> {
     const users = await this.usersService.findAll();
     if (!users) throw new NotFoundException();
 
-    const usersDto = users.map((user) => {
-      const { id, name, email, avatar, address } = user;
-      const userDto: UserDto = new UserDto(id, name, email, avatar, address);
-
-      return userDto;
-    });
-
-    return usersDto;
+    return users;
   }
 
   @Get(':userId')
@@ -51,10 +53,7 @@ export class UsersController {
     const user: User = await this.usersService.findOne(+userId);
     if (!user) throw new NotFoundException();
 
-    const { id, name, email, avatar, address } = user;
-    const userDto: UserDto = new UserDto(id, name, email, avatar, address);
-
-    return userDto;
+    return user;
   }
 
   @Patch(':id')
