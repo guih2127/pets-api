@@ -4,8 +4,7 @@
   "description": "## Why?",
   "main": "index.js",
   "scripts": {
-    "test": "vitest",
-    "typeorm": "ts-node src/api/orm/type-orm/data-source.ts"
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -29,10 +28,5 @@
     "ts-node": "^10.9.1",
     "typescript": "^4.8.3",
     "vitest": "^0.23.4"
-  },
-  "dependencies": {
-    "reflect-metadata": "^0.1.13",
-    "sqlite3": "^5.1.1",
-    "typeorm": "^0.3.10"
   }
 }
