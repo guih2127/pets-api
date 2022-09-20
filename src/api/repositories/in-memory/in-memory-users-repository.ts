@@ -1,7 +1,7 @@
 import { User } from "../../entities/user";
 import { UsersRepository } from "../interfaces/users-repository";
 
-export class InMemoryUserRepository implements UsersRepository {
+export class InMemoryUsersRepository implements UsersRepository {
   public users: User[];
 
   async getById(id): Promise<User | null> {

@@ -3,7 +3,7 @@ import { Species } from "./species";
 interface BreedProps {
   id: number;
   name: string;
-  species: Species;
+  speciesId: number;
 }
 
 export class Breed {
@@ -17,8 +17,8 @@ export class Breed {
     return this.props.name;
   }
 
-  get species(): Species {
-    return this.props.species;
+  get speciesId(): number {
+    return this.props.speciesId;
   }
 
   constructor(props: BreedProps) {

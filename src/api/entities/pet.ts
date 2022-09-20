@@ -1,45 +1,51 @@
-import { Species } from "./species";
-import { User } from "./user";
-import { Breed } from "./breed";
-import { Genre } from "./genre";
-
 interface PetProps {
-  id: number;
+  id?: number;
   name: string;
   description: string;
-  pictures: string[];
-  author: User;
-  species: Species;
-  breed: Breed;
-  gemre: Genre;
+  picture: string;
+  authorId: number;
+  speciesId: number;
+  breedId: number;
+  genreId: number;
 }
 
 export class Pet {
   private props: PetProps;
 
-  get id(): number {
+  get id(): number | undefined {
     return this.props.id;
   }
+
+  set id(id: number | undefined) {
+    this.props.id = id;
+  }
+
   get name(): string {
     return this.props.name;
   }
+
   get description(): string {
     return this.props.description;
   }
-  get pictures(): string[] {
-    return this.props.pictures;
+
+  get picture(): string {
+    return this.props.picture;
   }
-  get author(): User {
-    return this.props.author;
+
+  get authorId(): number {
+    return this.props.authorId;
   }
-  get species(): Species {
-    return this.props.species;
+
+  get speciesId(): number {
+    return this.props.speciesId;
   }
-  get breed(): Breed {
-    return this.props.breed;
+
+  get breedId(): number {
+    return this.props.breedId;
   }
-  get gemre(): Genre {
-    return this.props.gemre;
+
+  get genreId(): number {
+    return this.props.genreId;
   }
 
   constructor(props: PetProps) {
