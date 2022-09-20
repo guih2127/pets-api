@@ -4,6 +4,7 @@ import { Breed } from "../../api/entities/breed";
 test("create an breed", () => {
   const breed = new Breed({
     id: 1,
+    speciesId: 1,
     name: "SRD",
   });
 

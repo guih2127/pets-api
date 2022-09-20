@@ -1,10 +1,10 @@
-interface GemreProps {
+interface GenreProps {
   id: number;
   name: string;
 }
 
-export class Gemre {
-  private props: GemreProps;
+export class Genre {
+  private props: GenreProps;
 
   get id(): number {
     return this.props.id;
@@ -14,7 +14,7 @@ export class Gemre {
     return this.props.name;
   }
 
-  constructor(props: GemreProps) {
+  constructor(props: GenreProps) {
     this.props = props;
   }
 }

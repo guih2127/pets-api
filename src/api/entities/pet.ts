@@ -1,7 +1,7 @@
 import { Species } from "./species";
 import { User } from "./user";
 import { Breed } from "./breed";
-import { Gemre } from "./gemre";
+import { Genre } from "./genre";
 
 interface PetProps {
   id: number;
@@ -11,7 +11,7 @@ interface PetProps {
   author: User;
   species: Species;
   breed: Breed;
-  gemre: Gemre;
+  gemre: Genre;
 }
 
 export class Pet {
@@ -38,7 +38,7 @@ export class Pet {
   get breed(): Breed {
     return this.props.breed;
   }
-  get gemre(): Gemre {
+  get gemre(): Genre {
     return this.props.gemre;
   }
 

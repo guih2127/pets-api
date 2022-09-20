@@ -1,12 +1,12 @@
 import { expect, test } from "vitest";
-import { Gemre } from "../../api/entities/gemre";
+import { Genre } from "../../api/entities/genre";
 
 test("create an gemre", () => {
-  const gemre = new Gemre({
+  const genre = new Genre({
     id: 1,
     name: "Male",
   });
 
-  expect(gemre).toBeInstanceOf(Gemre);
-  expect(gemre.name).toEqual("Male");
+  expect(genre).toBeInstanceOf(Genre);
+  expect(genre.name).toEqual("Male");
 });
