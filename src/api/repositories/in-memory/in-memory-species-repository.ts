@@ -1,7 +1,7 @@
 import { Species } from "../../entities/species";
-import { SpeciesRepository } from "../interfaces/species-repository";
+import { ISpeciesRepository } from "../interfaces/species-repository";
 
-export class InMemorySpeciesRepository implements SpeciesRepository {
+export class InMemorySpeciesRepository implements ISpeciesRepository {
   public species: Species[] = [];
 
   async getAll(): Promise<Species[]> {

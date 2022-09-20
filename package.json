@@ -4,7 +4,8 @@
   "description": "## Why?",
   "main": "index.js",
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "typeorm": "ts-node src/api/orm/type-orm/data-source.ts"
   },
   "repository": {
     "type": "git",
@@ -18,16 +19,20 @@
   },
   "homepage": "https://github.com/guih2127/pets-api#readme",
   "devDependencies": {
+    "@types/node": "^18.7.18",
     "@typescript-eslint/eslint-plugin": "^5.38.0",
     "eslint": "^8.23.1",
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.5",
     "eslint-plugin-promise": "^6.0.1",
+    "ts-node": "^10.9.1",
     "typescript": "^4.8.3",
     "vitest": "^0.23.4"
   },
   "dependencies": {
-    "uuid": "^9.0.0"
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.1.1",
+    "typeorm": "^0.3.10"
   }
 }

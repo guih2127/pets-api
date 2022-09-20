@@ -1,7 +1,7 @@
 import { Breed } from "../../entities/breed";
-import { BreedsRepository } from "../interfaces/breeds-repository";
+import { IBreedsRepository } from "../interfaces/breeds-repository";
 
-export class InMemoryBreedsRepository implements BreedsRepository {
+export class InMemoryBreedsRepository implements IBreedsRepository {
   public breeds: Breed[] = [];
 
   async getById(id: number): Promise<Breed | null> {

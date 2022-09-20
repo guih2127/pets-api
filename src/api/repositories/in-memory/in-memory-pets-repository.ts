@@ -1,7 +1,7 @@
 import { Pet } from "../../entities/pet";
-import { PetsRepository } from "../interfaces/pets-repository";
+import { IPetsRepository } from "../interfaces/pets-repository";
 
-export class InMemoryPetsRepository implements PetsRepository {
+export class InMemoryPetsRepository implements IPetsRepository {
   public pets: Pet[] = [];
 
   async create(pet: Pet): Promise<number> {

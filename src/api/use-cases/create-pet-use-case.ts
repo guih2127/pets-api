@@ -1,20 +1,20 @@
 import { Pet } from "../entities/pet";
-import { PetsRepository } from "../repositories/interfaces/pets-repository";
-import { UsersRepository } from "../repositories/interfaces/users-repository";
-import { SpeciesRepository } from "../repositories/interfaces/species-repository";
-import { BreedsRepository } from "../repositories/interfaces/breeds-repository";
-import { GenresRepository } from "../repositories/interfaces/genres-repository";
+import { IPetsRepository } from "../repositories/interfaces/pets-repository";
+import { IUsersRepository } from "../repositories/interfaces/users-repository";
+import { ISpeciesRepository } from "../repositories/interfaces/species-repository";
+import { IBreedsRepository } from "../repositories/interfaces/breeds-repository";
+import { IGenresRepository } from "../repositories/interfaces/genres-repository";
 import { CreatePetRequest } from "../requests/create-cat-request";
 import { CreatePetResponse } from "../responses/create-cat-response";
 
 // TO-DO: ver a melhor forma de retornar a createPetResponse
 export class CreatePetUseCase {
   constructor(
-    private petsRepository: PetsRepository,
-    private usersRepository: UsersRepository,
-    private speciesRepository: SpeciesRepository,
-    private breedsRepository: BreedsRepository,
-    private genresRepository: GenresRepository
+    private petsRepository: IPetsRepository,
+    private usersRepository: IUsersRepository,
+    private speciesRepository: ISpeciesRepository,
+    private breedsRepository: IBreedsRepository,
+    private genresRepository: IGenresRepository
   ) {}
   async execute({
     name,

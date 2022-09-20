@@ -1,7 +1,7 @@
 import { Genre } from "../../entities/genre";
-import { GenresRepository } from "../interfaces/genres-repository";
+import { IGenresRepository } from "../interfaces/genres-repository";
 
-export class InMemoryGenresRepository implements GenresRepository {
+export class InMemoryGenresRepository implements IGenresRepository {
   public genres: Genre[] = [];
 
   async getById(id: number): Promise<Genre | null> {

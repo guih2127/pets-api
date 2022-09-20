@@ -1,10 +1,10 @@
 import { User } from "../entities/user";
-import { UsersRepository } from "../repositories/interfaces/users-repository";
+import { IUsersRepository } from "../repositories/interfaces/users-repository";
 import { CreateUserRequest } from "../requests/create-user-request";
 import { CreateUserResponse } from "../responses/create-user-response";
 
 export class CreateUserUseCase {
-  constructor(private usersRepository: UsersRepository) {}
+  constructor(private usersRepository: IUsersRepository) {}
   async execute({
     name,
     email,

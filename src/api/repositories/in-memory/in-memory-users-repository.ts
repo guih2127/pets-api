@@ -1,10 +1,10 @@
 import { User } from "../../entities/user";
-import { UsersRepository } from "../interfaces/users-repository";
+import { IUsersRepository } from "../interfaces/users-repository";
 
-export class InMemoryUsersRepository implements UsersRepository {
+export class InMemoryUsersRepository implements IUsersRepository {
   public users: User[] = [];
 
-  async getById(id): Promise<User | null> {
+  async getById(id: number): Promise<User | null> {
     const user = this.users.find((user) => user.id === id);
     if (!user) return null;
 
