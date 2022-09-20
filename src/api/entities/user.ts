@@ -1,7 +1,5 @@
-import { Pet } from "../pet/pet";
-
 interface UserProps {
-  uuid: string;
+  id: number;
   name: string;
   email: string;
   password: string;
@@ -15,8 +13,8 @@ interface UserProps {
 export class User {
   private props: UserProps;
 
-  get uuid(): string {
-    return this.props.uuid;
+  get id(): number {
+    return this.props.id;
   }
   get name(): string {
     return this.props.name;

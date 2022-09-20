@@ -1,13 +1,13 @@
 interface BreedProps {
-  uuid: string;
+  id: number;
   name: string;
 }
 
 export class Breed {
   private props: BreedProps;
 
-  get uuid(): string {
-    return this.props.uuid;
+  get id(): number {
+    return this.props.id;
   }
 
   get name(): string {

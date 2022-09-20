@@ -1,10 +1,9 @@
 import { expect, test } from "vitest";
-import { Gemre } from "./gemre";
-import { v4 as uuidv4 } from "uuid";
+import { Gemre } from "../../api/entities/gemre";
 
 test("create an gemre", () => {
   const gemre = new Gemre({
-    uuid: uuidv4(),
+    id: 1,
     name: "Male",
   });
 

@@ -1,10 +1,9 @@
 import { expect, test } from "vitest";
-import { User } from "../user/user";
-import { v4 as uuidv4 } from "uuid";
+import { User } from "../../api/entities/user";
 
 test("create an user", () => {
   const user = new User({
-    uuid: uuidv4(),
+    id: 1,
     name: "Guilherme",
     email: "guih2127@gmail.com",
     password: "123456",

@@ -1,10 +1,10 @@
-import { Breed } from "../breed/breed";
-import { Gemre } from "../gemre/gemre";
-import { Species } from "../species/Species";
-import { User } from "../user/user";
+import { Species } from "./species";
+import { User } from "./user";
+import { Breed } from "./breed";
+import { Gemre } from "./gemre";
 
 interface PetProps {
-  uuid: string;
+  id: number;
   name: string;
   description: string;
   pictures: string[];
@@ -17,8 +17,8 @@ interface PetProps {
 export class Pet {
   private props: PetProps;
 
-  get uuid(): string {
-    return this.props.uuid;
+  get id(): number {
+    return this.props.id;
   }
   get name(): string {
     return this.props.name;

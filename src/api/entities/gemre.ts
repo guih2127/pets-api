@@ -1,13 +1,13 @@
 interface GemreProps {
-  uuid: string;
+  id: number;
   name: string;
 }
 
 export class Gemre {
   private props: GemreProps;
 
-  get uuid(): string {
-    return this.props.uuid;
+  get id(): number {
+    return this.props.id;
   }
 
   get name(): string {

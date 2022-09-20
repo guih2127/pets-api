@@ -1,10 +1,9 @@
 import { expect, test } from "vitest";
-import { Species } from "./Species";
-import { v4 as uuidv4 } from "uuid";
+import { Species } from "../../api/entities/species";
 
-test("create an Species", () => {
+test("create an species", () => {
   const species = new Species({
-    uuid: uuidv4(),
+    id: 1,
     name: "Dog",
   });
 
