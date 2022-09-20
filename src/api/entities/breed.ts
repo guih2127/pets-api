@@ -1,7 +1,7 @@
 import { Species } from "./species";
 
 interface BreedProps {
-  id: number;
+  id?: number;
   name: string;
   speciesId: number;
 }
@@ -9,8 +9,12 @@ interface BreedProps {
 export class Breed {
   private props: BreedProps;
 
-  get id(): number {
+  get id(): number | undefined {
     return this.props.id;
+  }
+
+  set id(id: number | undefined) {
+    this.props.id = id;
   }
 
   get name(): string {

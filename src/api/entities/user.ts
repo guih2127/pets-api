@@ -1,5 +1,5 @@
 interface UserProps {
-  id: number;
+  id?: number;
   name: string;
   email: string;
   password: string;
@@ -13,8 +13,12 @@ interface UserProps {
 export class User {
   private props: UserProps;
 
-  get id(): number {
+  get id(): number | undefined {
     return this.props.id;
+  }
+
+  set id(id: number | undefined) {
+    this.props.id = id;
   }
 
   get name(): string {

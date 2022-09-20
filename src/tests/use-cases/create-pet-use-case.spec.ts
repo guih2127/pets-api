@@ -42,10 +42,10 @@ describe("Create Pet", () => {
   const species = new Species({ id: 1, name: "Dog" });
   const breed = new Breed({ id: 1, name: "SRD", speciesId: 1 });
 
-  usersRepository.users = [user];
-  genresRepository.genres = [genre];
-  speciesRepository.species = [species];
-  breedsRepository.breeds = [breed];
+  usersRepository.create(user);
+  genresRepository.create(genre);
+  speciesRepository.create(species);
+  breedsRepository.create(breed);
 
   it("should be able to create a pet", async () => {
     const createPetResponse = await createPet.execute({
@@ -59,5 +59,19 @@ describe("Create Pet", () => {
     });
 
     expect(createPetResponse).toBeInstanceOf(CreatePetResponse);
+  });
+
+  it("shouldn't be able to create a pet with an inexisting authorId", async () => {
+    const createPetResponse = await createPet.execute({
+      name: "Batata",
+      description: "Um cachorro",
+      breedId: 1,
+      genreId: 1,
+      speciesId: 1,
+      authorId: 2,
+      picture: "picure1",
+    });
+
+    expect(createPetResponse).toBeNull();
   });
 });

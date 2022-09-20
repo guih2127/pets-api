@@ -2,7 +2,7 @@ import { Breed } from "../../entities/breed";
 import { BreedsRepository } from "../interfaces/breeds-repository";
 
 export class InMemoryBreedsRepository implements BreedsRepository {
-  public breeds: Breed[];
+  public breeds: Breed[] = [];
 
   async getById(id: number): Promise<Breed | null> {
     const breeds = this.breeds.find((breed) => breed.id === id);
@@ -16,5 +16,12 @@ export class InMemoryBreedsRepository implements BreedsRepository {
     const breeds = this.breeds.filter((breed) => breed.speciesId === speciesId);
 
     return breeds;
+  }
+
+  async create(breed: Breed): Promise<number> {
+    breed.id = this.breeds.length + 1;
+    this.breeds.push(breed);
+
+    return breed.id;
   }
 }
