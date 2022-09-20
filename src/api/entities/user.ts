@@ -1,3 +1,5 @@
+import { Pet } from "./pet";
+
 interface UserProps {
   id?: number;
   name: string;
@@ -8,6 +10,8 @@ interface UserProps {
   state: string;
   country: string;
   phone: string;
+
+  pets?: Pet[];
 }
 
 export class User {

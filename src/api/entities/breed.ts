@@ -4,6 +4,8 @@ interface BreedProps {
   id?: number;
   name: string;
   speciesId: number;
+
+  species?: Species;
 }
 
 export class Breed {
@@ -23,6 +25,10 @@ export class Breed {
 
   get speciesId(): number {
     return this.props.speciesId;
+  }
+
+  get species(): Species {
+    return this.props.species;
   }
 
   constructor(props: BreedProps) {

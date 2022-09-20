@@ -1,3 +1,8 @@
+import { Breed } from "./breed";
+import { Genre } from "./genre";
+import { Species } from "./species";
+import { User } from "./user";
+
 interface PetProps {
   id?: number;
   name: string;
@@ -7,6 +12,11 @@ interface PetProps {
   speciesId: number;
   breedId: number;
   genreId: number;
+
+  author?: User;
+  genre?: Genre;
+  breed?: Breed;
+  species?: Species;
 }
 
 export class Pet {
@@ -36,16 +46,32 @@ export class Pet {
     return this.props.authorId;
   }
 
+  get author(): User {
+    return this.props.author;
+  }
+
   get speciesId(): number {
     return this.props.speciesId;
+  }
+
+  get species(): Species {
+    return this.props.species;
   }
 
   get breedId(): number {
     return this.props.breedId;
   }
 
+  get breed(): Breed {
+    return this.props.breed;
+  }
+
   get genreId(): number {
     return this.props.genreId;
+  }
+
+  get genre(): Genre {
+    return this.props.genre;
   }
 
   constructor(props: PetProps) {
