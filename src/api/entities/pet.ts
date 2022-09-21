@@ -8,7 +8,7 @@ interface PetProps {
   name: string;
   description: string;
   picture: string;
-  authorId: number;
+  userId: number;
   speciesId: number;
   breedId: number;
   genreId: number;
@@ -42,8 +42,8 @@ export class Pet {
     return this.props.picture;
   }
 
-  get authorId(): number {
-    return this.props.authorId;
+  get userId(): number {
+    return this.props.userId;
   }
 
   get author(): User {

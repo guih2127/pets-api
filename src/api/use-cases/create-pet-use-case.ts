@@ -4,8 +4,8 @@ import { IUsersRepository } from "../repositories/interfaces/users-repository";
 import { ISpeciesRepository } from "../repositories/interfaces/species-repository";
 import { IBreedsRepository } from "../repositories/interfaces/breeds-repository";
 import { IGenresRepository } from "../repositories/interfaces/genres-repository";
-import { CreatePetRequest } from "../requests/create-cat-request";
-import { CreatePetResponse } from "../responses/create-cat-response";
+import { CreatePetRequest } from "../requests/create-pet-request";
+import { CreatePetResponse } from "../responses/create-pet-response";
 
 // TO-DO: ver a melhor forma de retornar a createPetResponse
 export class CreatePetUseCase {
@@ -20,7 +20,7 @@ export class CreatePetUseCase {
     name,
     description,
     picture,
-    authorId,
+    userId,
     genreId,
     speciesId,
     breedId,
@@ -29,7 +29,7 @@ export class CreatePetUseCase {
       name,
       description,
       picture,
-      authorId,
+      userId,
       genreId,
       speciesId,
       breedId,
@@ -40,12 +40,12 @@ export class CreatePetUseCase {
 
     if (!createdPet) return null;
 
-    const author = await this.usersRepository.getById(createdPet.authorId);
+    const user = await this.usersRepository.getById(createdPet.authorId);
     const species = await this.speciesRepository.getById(createdPet.speciesId);
     const breed = await this.breedsRepository.getById(createdPet.breedId);
     const genre = await this.genresRepository.getById(createdPet.genreId);
 
-    if (!author) return null;
+    if (!user) return null;
     if (!species) return null;
     if (!breed) return null;
     if (!genre) return null;
@@ -55,7 +55,7 @@ export class CreatePetUseCase {
       name,
       description,
       picture,
-      author,
+      user,
       genre,
       species,
       breed,

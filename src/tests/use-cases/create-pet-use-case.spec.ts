@@ -6,7 +6,7 @@ import { InMemoryGenresRepository } from "../../api/repositories/in-memory/in-me
 import { InMemorySpeciesRepository } from "../../api/repositories/in-memory/in-memory-species-repository";
 import { InMemoryBreedsRepository } from "../../api/repositories/in-memory/in-memory-breeds-repository";
 import { CreatePetUseCase } from "../../api/use-cases/create-pet-use-case";
-import { CreatePetResponse } from "../../api/responses/create-cat-response";
+import { CreatePetResponse } from "../../api/responses/create-pet-response";
 import { User } from "../../api/entities/user";
 import { Breed } from "../../api/entities/breed";
 import { Species } from "../../api/entities/species";

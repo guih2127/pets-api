@@ -3,7 +3,7 @@ export interface CreatePetRequest {
   description: string;
   picture: string;
 
-  authorId: number;
+  userId: number;
   breedId: number;
   genreId: number;
   speciesId: number;

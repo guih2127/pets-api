@@ -8,7 +8,7 @@ interface CreatePetResponseProps {
   name: string;
   description: string;
   picture: string;
-  author: User;
+  user: User;
   breed: Breed;
   species: Species;
   genre: Genre;
@@ -33,8 +33,8 @@ export class CreatePetResponse {
     return this.props.picture;
   }
 
-  get author(): User {
-    return this.props.author;
+  get user(): User {
+    return this.props.user;
   }
 
   get breed(): Breed {
