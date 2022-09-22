@@ -40,7 +40,7 @@ export class CreatePetUseCase {
 
     if (!createdPet) return null;
 
-    const user = await this.usersRepository.getById(createdPet.authorId);
+    const user = await this.usersRepository.getById(createdPet.userId);
     const species = await this.speciesRepository.getById(createdPet.speciesId);
     const breed = await this.breedsRepository.getById(createdPet.breedId);
     const genre = await this.genresRepository.getById(createdPet.genreId);

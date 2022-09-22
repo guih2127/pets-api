@@ -1,10 +1,10 @@
-interface GenreProps {
+export interface IGenre {
   id?: number;
   name: string;
 }
 
 export class Genre {
-  private props: GenreProps;
+  private props: IGenre;
 
   get id(): number | undefined {
     return this.props.id;
@@ -18,7 +18,7 @@ export class Genre {
     return this.props.name;
   }
 
-  constructor(props: GenreProps) {
+  constructor(props: IGenre) {
     this.props = props;
   }
 }

@@ -1,6 +1,6 @@
 import { Species } from "./species";
 
-interface BreedProps {
+export interface IBreed {
   id?: number;
   name: string;
   speciesId: number;
@@ -9,7 +9,7 @@ interface BreedProps {
 }
 
 export class Breed {
-  private props: BreedProps;
+  private props: IBreed;
 
   get id(): number | undefined {
     return this.props.id;
@@ -31,7 +31,7 @@ export class Breed {
     return this.props.species;
   }
 
-  constructor(props: BreedProps) {
+  constructor(props: IBreed) {
     this.props = props;
   }
 }

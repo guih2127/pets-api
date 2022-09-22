@@ -1,6 +1,6 @@
 import { Pet } from "./pet";
 
-interface UserProps {
+interface IUser {
   id?: number;
   name: string;
   email: string;
@@ -15,7 +15,7 @@ interface UserProps {
 }
 
 export class User {
-  private props: UserProps;
+  private props: IUser;
 
   get id(): number | undefined {
     return this.props.id;
@@ -57,7 +57,7 @@ export class User {
     return this.props.phone;
   }
 
-  constructor(props: UserProps) {
+  constructor(props: IUser) {
     this.props = props;
   }
 }

@@ -1,10 +1,10 @@
-interface SpeciesProps {
+export interface ISpecies {
   id?: number;
   name: string;
 }
 
 export class Species {
-  private props: SpeciesProps;
+  private props: ISpecies;
 
   get id(): number | undefined {
     return this.props.id;
@@ -18,7 +18,7 @@ export class Species {
     return this.props.name;
   }
 
-  constructor(props: SpeciesProps) {
+  constructor(props: ISpecies) {
     this.props = props;
   }
 }

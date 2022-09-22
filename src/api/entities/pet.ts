@@ -3,7 +3,7 @@ import { Genre } from "./genre";
 import { Species } from "./species";
 import { User } from "./user";
 
-interface PetProps {
+export interface IPet {
   id?: number;
   name: string;
   description: string;
@@ -20,7 +20,7 @@ interface PetProps {
 }
 
 export class Pet {
-  private props: PetProps;
+  private props: IPet;
 
   get id(): number | undefined {
     return this.props.id;
@@ -74,7 +74,7 @@ export class Pet {
     return this.props.genre;
   }
 
-  constructor(props: PetProps) {
+  constructor(props: IPet) {
     this.props = props;
   }
 }

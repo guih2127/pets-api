@@ -54,7 +54,7 @@ describe("Create Pet", () => {
       breedId: 1,
       genreId: 1,
       speciesId: 1,
-      authorId: 1,
+      userId: 1,
       picture: "picure1",
     });
 
@@ -68,7 +68,7 @@ describe("Create Pet", () => {
       breedId: 1,
       genreId: 1,
       speciesId: 1,
-      authorId: 2,
+      userId: 2,
       picture: "picure1",
     });
 
