@@ -3,14 +3,10 @@ import { User } from "../entities/user";
 import { IUsersRepository } from "./interfaces/users-repository";
 
 export class UsersRepository implements IUsersRepository {
-  public connection: any;
-
-  constructor() {
-    this.connection = mySqlConnection();
-  }
-
   async getById(id: number): Promise<User> {
-    const [rows] = await this.connection.execute(
+    const connection = await mySqlConnection();
+
+    const [rows] = await connection.execute(
       "SELECT * FROM users WHERE id = id",
       [id]
     );
@@ -32,14 +28,16 @@ export class UsersRepository implements IUsersRepository {
   }
 
   async create(user: User): Promise<number> {
+    const connection = await mySqlConnection();
+
     const { name, email, password, avatar, zipcode, state, country, phone } =
       user;
 
-    const [result] = await this.connection.execute(
+    const [result] = await connection.execute(
       `INSERT INTO users 
         (name, email, password, avatar, zipcode, state, country, phone) 
       VALUES 
-        (?, ?)`,
+        (?, ?, ?, ?, ?, ?, ?, ?)`,
       [name, email, password, avatar, zipcode, state, country, phone]
     );
 

@@ -3,17 +3,13 @@ import { Pet } from "../entities/pet";
 import { IPetsRepository } from "./interfaces/pets-repository";
 
 export class PetsRepository implements IPetsRepository {
-  public connection: any;
-
-  constructor() {
-    this.connection = mySqlConnection();
-  }
-
   async create(pet: Pet): Promise<number> {
+    const connection = await mySqlConnection();
+
     const { name, description, picture, userId, speciesId, breedId, genreId } =
       pet;
 
-    const [result] = await this.connection.execute(
+    const [result] = await connection.execute(
       `INSERT INTO pets 
         (name, description, picture, userId, speciesId, breedId, genreId) 
       VALUES
@@ -25,7 +21,9 @@ export class PetsRepository implements IPetsRepository {
   }
 
   async getById(id: number): Promise<Pet> {
-    const [rows] = await this.connection.execute(
+    const connection = await mySqlConnection();
+
+    const [rows] = await connection.execute(
       "SELECT * FROM pets WHERE id = id",
       [id]
     );

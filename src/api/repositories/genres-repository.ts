@@ -4,14 +4,9 @@ import { Genre } from "../entities/genre";
 import { IGenresRepository } from "./interfaces/genres-repository";
 
 export class GenresRepository implements IGenresRepository {
-  public connection: any;
-
-  constructor() {
-    this.connection = mySqlConnection();
-  }
-
   async getAll(): Promise<Genre[]> {
-    const [rows] = await this.connection.execute("SELECT * FROM genres");
+    const connection = await mySqlConnection();
+    const [rows] = await connection.execute("SELECT * FROM genres");
 
     const genres = rows.map((row: RowDataPacket) => {
       return new Genre({
@@ -24,7 +19,8 @@ export class GenresRepository implements IGenresRepository {
   }
 
   async getById(id: number): Promise<Genre> {
-    const [rows] = await this.connection.execute(
+    const connection = await mySqlConnection();
+    const [rows] = await connection.execute(
       "SELECT * FROM genres WHERE id = id",
       [id]
     );
@@ -40,9 +36,10 @@ export class GenresRepository implements IGenresRepository {
   }
 
   async create(genre: Genre): Promise<number> {
+    const connection = await mySqlConnection();
     const { name } = genre;
 
-    const [result] = await this.connection.execute(
+    const [result] = await connection.execute(
       "INSERT INTO genres (name) VALUES (?)",
       [name]
     );

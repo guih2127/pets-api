@@ -4,14 +4,10 @@ import { Species } from "../entities/species";
 import { ISpeciesRepository } from "./interfaces/species-repository";
 
 export class SpeciesRepository implements ISpeciesRepository {
-  public connection: any;
-
-  constructor() {
-    this.connection = mySqlConnection();
-  }
-
   async getAll(): Promise<Species[]> {
-    const [rows] = await this.connection.execute("SELECT * FROM species");
+    const connection = await mySqlConnection();
+
+    const [rows] = await connection.execute("SELECT * FROM species");
 
     const species = rows.map((row: RowDataPacket) => {
       return new Species({
@@ -24,7 +20,9 @@ export class SpeciesRepository implements ISpeciesRepository {
   }
 
   async getById(id: number): Promise<Species> {
-    const [rows] = await this.connection.execute(
+    const connection = await mySqlConnection();
+
+    const [rows] = await connection.execute(
       "SELECT * FROM species WHERE id = id",
       [id]
     );
@@ -40,9 +38,11 @@ export class SpeciesRepository implements ISpeciesRepository {
   }
 
   async create(species: Species): Promise<number> {
+    const connection = await mySqlConnection();
+
     const { name } = species;
 
-    const [result] = await this.connection.execute(
+    const [result] = await connection.execute(
       "INSERT INTO species (name) VALUES (?)",
       [name]
     );

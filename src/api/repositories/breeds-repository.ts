@@ -3,21 +3,16 @@ import { IBreedsRepository } from "./interfaces/breeds-repository";
 import mySqlConnection from "../database/mysql-connection";
 import { RowDataPacket } from "mysql2";
 
-export class BreedRepositorys implements IBreedsRepository {
-  public connection: any;
-
-  constructor() {
-    this.connection = mySqlConnection();
-  }
-
+export class BreedsRepository implements IBreedsRepository {
   async getAll(): Promise<Breed[]> {
-    const [rows] = await this.connection.execute("SELECT * FROM breeds");
+    const connection = await mySqlConnection();
+
+    const [rows] = await connection.execute("SELECT * FROM breeds");
 
     const breeds = rows.map((row: RowDataPacket) => {
       return new Breed({
         id: row.id,
         name: row.name,
-        speciesId: row.speciesId,
       });
     });
 
@@ -25,7 +20,9 @@ export class BreedRepositorys implements IBreedsRepository {
   }
 
   async getAllBySpeciesId(speciesId: number): Promise<Breed[]> {
-    const [rows] = await this.connection.execute(
+    const connection = await mySqlConnection();
+
+    const [rows] = await connection.execute(
       "SELECT * FROM breeds WHERE speciesId = ?",
       [speciesId]
     );
@@ -34,7 +31,6 @@ export class BreedRepositorys implements IBreedsRepository {
       return new Breed({
         id: row.id,
         name: row.name,
-        speciesId: row.speciesId,
       });
     });
 
@@ -42,7 +38,9 @@ export class BreedRepositorys implements IBreedsRepository {
   }
 
   async getById(id: number): Promise<Breed> {
-    const [rows] = await this.connection.execute(
+    const connection = await mySqlConnection();
+
+    const [rows] = await connection.execute(
       "SELECT * FROM breeds WHERE id = id",
       [id]
     );
@@ -52,18 +50,19 @@ export class BreedRepositorys implements IBreedsRepository {
     const breed = new Breed({
       id: rows[0].id,
       name: rows[0].name,
-      speciesId: rows[0].speciesId,
     });
 
     return breed;
   }
 
   async create(breed: Breed): Promise<number> {
-    const { name, speciesId } = breed;
+    const connection = await mySqlConnection();
 
-    const [result] = await this.connection.execute(
-      "INSERT INTO breeds (name, speciesId) VALUES (?, ?)",
-      [name, speciesId]
+    const { name } = breed;
+
+    const [result] = await connection.execute(
+      "INSERT INTO breeds (name) VALUES (?)",
+      [name]
     );
 
     return result.insertId;

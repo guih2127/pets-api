@@ -1,7 +1,8 @@
-import connection from "../mysql-connection";
+import mySqlConnection from "../mysql-connection";
 import { createDatabaseQueries } from "./create-database-queries";
 
 async function createTable(sql: string) {
+  const connection = await mySqlConnection();
   await connection.execute(sql);
 }
 
