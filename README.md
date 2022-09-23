@@ -11,7 +11,38 @@ Besides that, the API is coded using TDD and SOLID principles, trying to make a 
 
 ## How can I run this API?
 
+The first thing eu need to do is install the dependencies with node:
+
 ```
 npm install
+```
+
+Then, you need to create a MySQL instance, downloading the MySQL driver
+or using Docker (I usually use Docker for the database). In this instance,
+create a database named "pets" (or any other name that you like.)
+
+After that, you need to create a .env file in the root of the project, with
+this information:
+
+```
+DATABASE_HOST=""
+DATABASE_PORT=""
+DATABASE_USERNAME=""
+DATABASE_PASSWORD=""
+DATABASE_NAME=""
+APP_PORT=""
+```
+
+Then, you need to create and populate the database. For that, you can run
+the following commands:
+
+```
+npm run create-database
+npm run seed-database
+```
+
+After, that, you are ready to go, just run:
+
+```
 npm run dev
 ```
