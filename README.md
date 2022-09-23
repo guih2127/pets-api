@@ -46,3 +46,12 @@ After, that, you are ready to go, just run:
 ```
 npm run dev
 ```
+
+## Tests
+
+Tests were created for useCases and entities of the project, you can run them
+by executing the following command:
+
+```
+npm run test
+```
