@@ -11,7 +11,7 @@ test("create a pet", () => {
     name: "Batata",
     description: "Um cachorro",
     picture: "picture",
-    authorId: 1,
+    userId: 1,
     speciesId: 1,
     breedId: 1,
     genreId: 1,
