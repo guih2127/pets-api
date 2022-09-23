@@ -6,7 +6,7 @@ I'm currently coding this API to learn some concepts about developing APIs in Ty
 
 ## Nice, but what is this developed on?
 
-I am actually using using Node, Typescript, Express and TypeORM for developing this API. For the database, I'm using MongoDB and, for writing tests, I will be using Vitest. For last, Swagger is used to make a documentation about this API.
+I am actually using using Node, Typescript and Express for developing this API. For the database, I'm using Mysql and, for writing tests, I will be using Vitest. For last, Swagger is used to make a documentation about this API.
 Besides that, the API is coded using TDD and SOLID principles, trying to make a decoupled and testable code.
 
 ## How can I run this API?
