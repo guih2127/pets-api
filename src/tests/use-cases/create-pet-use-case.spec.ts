@@ -40,7 +40,7 @@ describe("Create Pet", () => {
   });
   const genre = new Genre({ id: 1, name: "Male" });
   const species = new Species({ id: 1, name: "Dog" });
-  const breed = new Breed({ id: 1, name: "SRD", speciesId: 1 });
+  const breed = new Breed({ id: 1, name: "SRD" });
 
   usersRepository.create(user);
   genresRepository.create(genre);
