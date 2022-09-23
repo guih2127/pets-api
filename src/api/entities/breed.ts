@@ -3,7 +3,6 @@ import { Species } from "./species";
 export interface IBreed {
   id?: number;
   name: string;
-  speciesId: number;
 
   species?: Species;
 }
@@ -21,10 +20,6 @@ export class Breed {
 
   get name(): string {
     return this.props.name;
-  }
-
-  get speciesId(): number {
-    return this.props.speciesId;
   }
 
   get species(): Species {
