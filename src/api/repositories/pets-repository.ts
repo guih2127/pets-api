@@ -2,28 +2,33 @@ import { RowDataPacket } from "mysql2";
 import mySqlConnection from "../database/mysql-connection";
 import { Pet } from "../entities/pet";
 import { ListPetsRequest } from "../requests/list-pets-request";
+import { RepositoryUtils } from "../utils/repository-utils";
 import { IPetsRepository } from "./interfaces/pets-repository";
 
 export class PetsRepository implements IPetsRepository {
   async getAll(listPetsRequest: ListPetsRequest): Promise<Pet[]> {
     const connection = await mySqlConnection();
 
-    const { speciesId, genreId, userId, breedId, pageNumber, pageSize } =
+    const { name, speciesId, genreId, userId, breedId, pageSize, pageNumber } =
       listPetsRequest;
-    const likeName = `%${listPetsRequest.name}%`;
+    const { limit, offset } = RepositoryUtils.createLimitAndOffset(
+      pageNumber,
+      pageSize
+    );
+    const likeName = RepositoryUtils.createLikeParam(name);
 
     const [rows] = await connection.execute(
       `
         SELECT * FROM pets 
-        WHERE name LIKE ISNULL(?, name)
-        AND speciesId = ISNULL(?, speciesId)
-        AND genreId = ISNULL(?, genreId)
-        AND userId = ISNULL(?, userId)
-        AND breedId = ISNULL(?, breedId)
+        WHERE name LIKE IFNULL(?, name)
+        AND speciesId = IFNULL(?, speciesId)
+        AND genreId = IFNULL(?, genreId)
+        AND userId = IFNULL(?, userId)
+        AND breedId = IFNULL(?, breedId)
         LIMIT ?
         OFFSET ?
       `,
-      [likeName, speciesId, genreId, userId, breedId, pageSize, pageNumber]
+      [likeName, speciesId, genreId, userId, breedId, limit, offset]
     );
 
     const pets = rows.map((row: RowDataPacket) => {

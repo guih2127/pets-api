@@ -6,6 +6,7 @@ import { SpeciesRepository } from "../repositories/species-repository";
 import { UsersRepository } from "../repositories/users-repository";
 import { CreatePetUseCase } from "../use-cases/create-pet-use-case";
 import { GetPetUseCase } from "../use-cases/get-pet-use-case";
+import { ListPetsUseCase } from "../use-cases/list-pets-use-case";
 
 export default function PetsFactory() {
   const petsRepository = new PetsRepository();
@@ -30,5 +31,13 @@ export default function PetsFactory() {
     genresRepository
   );
 
-  return { createPetUseCase, getPetUseCase };
+  const listPetsUseCase = new ListPetsUseCase(
+    petsRepository,
+    usersRepository,
+    speciesRepository,
+    breedsRepository,
+    genresRepository
+  );
+
+  return { createPetUseCase, getPetUseCase, listPetsUseCase };
 }

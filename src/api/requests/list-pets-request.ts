@@ -1,10 +1,10 @@
 export interface ListPetsRequest {
   name?: string;
-  speciesId?: number;
-  genreId?: number;
-  userId?: number;
-  breedId?: number;
+  speciesId?: string;
+  genreId?: string;
+  userId?: string;
+  breedId?: string;
 
-  pageSize?: number;
-  pageNumber?: number;
+  pageSize?: string;
+  pageNumber?: string;
 }
