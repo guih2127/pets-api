@@ -19,7 +19,7 @@ describe("Create Pet", () => {
   const speciesRepository = new InMemorySpeciesRepository();
   const breedsRepository = new InMemoryBreedsRepository();
 
-  const createPet = new CreatePetUseCase(
+  const createPetUseCase = new CreatePetUseCase(
     petsRepository,
     usersRepository,
     speciesRepository,
@@ -38,8 +38,8 @@ describe("Create Pet", () => {
     country: "Brasil",
     phone: "11-11111-1111",
   });
-  const genre = new Genre({ id: 1, name: "Male" });
-  const species = new Species({ id: 1, name: "Dog" });
+  const genre = new Genre({ id: 1, name: "Macho" });
+  const species = new Species({ id: 1, name: "Cachorro" });
   const breed = new Breed({ id: 1, name: "SRD" });
 
   usersRepository.create(user);
@@ -48,7 +48,7 @@ describe("Create Pet", () => {
   breedsRepository.create(breed);
 
   it("should be able to create a pet", async () => {
-    const createPetResponse = await createPet.execute({
+    const createPetResponse = await createPetUseCase.execute({
       name: "Batata",
       description: "Um cachorro",
       breedId: 1,
@@ -62,7 +62,7 @@ describe("Create Pet", () => {
   });
 
   it("shouldn't be able to create a pet with an inexisting authorId", async () => {
-    const createPetResponse = await createPet.execute({
+    const createPetResponse = await createPetUseCase.execute({
       name: "Batata",
       description: "Um cachorro",
       breedId: 1,

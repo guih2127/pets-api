@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import { Genre } from "../../api/entities/genre";
 
-test("create an gemre", () => {
+test("create an genre", () => {
   const genre = new Genre({
     id: 1,
     name: "Male",

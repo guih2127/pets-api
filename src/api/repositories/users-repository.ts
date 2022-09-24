@@ -14,6 +14,7 @@ export class UsersRepository implements IUsersRepository {
     if (!rows) return null;
 
     const user = new User({
+      id: rows[0].id,
       name: rows[0].name,
       email: rows[0].email,
       password: rows[0].password,

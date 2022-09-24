@@ -8,4 +8,8 @@ petsRouter.post("/", (request, response) => {
   return petsController.create(request, response);
 });
 
+petsRouter.get("/:id", (request, response) => {
+  return petsController.getById(request, response);
+});
+
 export default petsRouter;

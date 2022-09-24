@@ -4,7 +4,7 @@ export interface IBreed {
   id?: number;
   name: string;
 
-  species?: Species;
+  species?: Species[];
 }
 
 export class Breed {
@@ -22,7 +22,7 @@ export class Breed {
     return this.props.name;
   }
 
-  get species(): Species {
+  get species(): Species[] {
     return this.props.species;
   }
 

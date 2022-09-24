@@ -23,7 +23,11 @@ export class BreedsRepository implements IBreedsRepository {
     const connection = await mySqlConnection();
 
     const [rows] = await connection.execute(
-      "SELECT * FROM breeds WHERE speciesId = ?",
+      `
+      SELECT * FROM breeds b 
+      JOIN 
+        speciesBreeds sb on sb.breedsId = b.id  WHERE speciesId = ?
+      `,
       [speciesId]
     );
 

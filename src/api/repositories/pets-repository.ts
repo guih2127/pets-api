@@ -23,14 +23,13 @@ export class PetsRepository implements IPetsRepository {
   async getById(id: number): Promise<Pet> {
     const connection = await mySqlConnection();
 
-    const [rows] = await connection.execute(
-      "SELECT * FROM pets WHERE id = id",
-      [id]
-    );
+    const [rows] = await connection.execute("SELECT * FROM pets WHERE id = ?", [
+      id,
+    ]);
 
-    if (!rows) return null;
+    if (!rows.length) return null;
 
-    const breed = new Pet({
+    const pet = new Pet({
       id: rows[0].id,
       name: rows[0].name,
       description: rows[0].description,
@@ -41,6 +40,6 @@ export class PetsRepository implements IPetsRepository {
       genreId: rows[0].genreId,
     });
 
-    return breed;
+    return pet;
   }
 }

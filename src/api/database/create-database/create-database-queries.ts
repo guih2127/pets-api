@@ -38,7 +38,7 @@ const createTableUsers = `
   (
     id INT NOT NULL AUTO_INCREMENT, 
     name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(500) NOT NULL, 
     avatar VARCHAR(500) NULL, 
     zipcode VARCHAR(100) NOT NULL, 

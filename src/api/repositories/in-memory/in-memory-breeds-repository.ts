@@ -17,7 +17,9 @@ export class InMemoryBreedsRepository implements IBreedsRepository {
   }
 
   async getAllBySpeciesId(speciesId: number): Promise<Breed[]> {
-    const breeds = this.breeds.filter((breed) => breed.speciesId === speciesId);
+    const breeds = this.breeds.filter((breed) =>
+      breed.species.find((species) => species.id === speciesId)
+    );
 
     return breeds;
   }
