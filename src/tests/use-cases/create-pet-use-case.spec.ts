@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { Pet } from "../../api/entities/pet";
 import { InMemoryPetsRepository } from "../../api/repositories/in-memory/in-memory-pets-repository";
 import { InMemoryUsersRepository } from "../../api/repositories/in-memory/in-memory-users-repository";
 import { InMemoryGenresRepository } from "../../api/repositories/in-memory/in-memory-genres-repository";

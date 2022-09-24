@@ -1,8 +1,47 @@
+import { RowDataPacket } from "mysql2";
 import mySqlConnection from "../database/mysql-connection";
 import { Pet } from "../entities/pet";
+import { ListPetsRequest } from "../requests/list-pets-request";
 import { IPetsRepository } from "./interfaces/pets-repository";
 
 export class PetsRepository implements IPetsRepository {
+  async getAll(listPetsRequest: ListPetsRequest): Promise<Pet[]> {
+    const connection = await mySqlConnection();
+
+    const { speciesId, genreId, userId, breedId, pageNumber, pageSize } =
+      listPetsRequest;
+    const likeName = `%${listPetsRequest.name}%`;
+
+    const [rows] = await connection.execute(
+      `
+        SELECT * FROM pets 
+        WHERE name LIKE ISNULL(?, name)
+        AND speciesId = ISNULL(?, speciesId)
+        AND genreId = ISNULL(?, genreId)
+        AND userId = ISNULL(?, userId)
+        AND breedId = ISNULL(?, breedId)
+        LIMIT ?
+        OFFSET ?
+      `,
+      [likeName, speciesId, genreId, userId, breedId, pageSize, pageNumber]
+    );
+
+    const pets = rows.map((row: RowDataPacket) => {
+      return new Pet({
+        id: row.id,
+        name: row.name,
+        picture: row.picture,
+        description: row.description,
+        userId: row.userId,
+        speciesId: row.speciesId,
+        genreId: row.genreId,
+        breedId: row.breedId,
+      });
+    });
+
+    return pets;
+  }
+
   async create(pet: Pet): Promise<number> {
     const connection = await mySqlConnection();
 
