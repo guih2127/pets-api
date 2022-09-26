@@ -92,8 +92,8 @@ describe("List pets", () => {
       genreId: null,
       userId: null,
       breedId: null,
-      pageSize: 2,
-      pageNumber: 1,
+      pageSize: "2",
+      pageNumber: "1",
     } as ListPetsRequest;
     const listPetsResponse = await listPetsUseCase.execute(listPetsRequest);
 
@@ -110,8 +110,8 @@ describe("List pets", () => {
       genreId: null,
       userId: null,
       breedId: null,
-      pageSize: 2,
-      pageNumber: 2,
+      pageSize: "2",
+      pageNumber: "2",
     } as ListPetsRequest;
     const listPetsResponse = await listPetsUseCase.execute(listPetsRequest);
 
@@ -124,11 +124,11 @@ describe("List pets", () => {
     const listPetsRequest = {
       name: null,
       speciesId: null,
-      genreId: 1,
+      genreId: "1",
       userId: null,
       breedId: null,
-      pageSize: 10,
-      pageNumber: 1,
+      pageSize: "10",
+      pageNumber: "1",
     } as ListPetsRequest;
     const listPetsResponse = await listPetsUseCase.execute(listPetsRequest);
 
@@ -142,11 +142,11 @@ describe("List pets", () => {
     const listPetsRequest = {
       name: null,
       speciesId: null,
-      genreId: 1,
+      genreId: "1",
       userId: null,
-      breedId: 2,
-      pageSize: 10,
-      pageNumber: 1,
+      breedId: "2",
+      pageSize: "10",
+      pageNumber: "1",
     } as ListPetsRequest;
     const listPetsResponse = await listPetsUseCase.execute(listPetsRequest);
 
