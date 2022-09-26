@@ -17,20 +17,28 @@ export class InMemoryPetsRepository implements IPetsRepository {
       });
 
     if (speciesId)
-      petsFiltered = petsFiltered.filter((pet) => pet.speciesId === speciesId);
+      petsFiltered = petsFiltered.filter(
+        (pet) => pet.speciesId === parseInt(speciesId)
+      );
 
     if (genreId)
-      petsFiltered = petsFiltered.filter((pet) => pet.genreId === genreId);
+      petsFiltered = petsFiltered.filter(
+        (pet) => pet.genreId === parseInt(genreId)
+      );
 
     if (breedId)
-      petsFiltered = petsFiltered.filter((pet) => pet.breedId === breedId);
+      petsFiltered = petsFiltered.filter(
+        (pet) => pet.breedId === parseInt(breedId)
+      );
 
     if (userId)
-      petsFiltered = petsFiltered.filter((pet) => pet.userId === userId);
+      petsFiltered = petsFiltered.filter(
+        (pet) => pet.userId === parseInt(userId)
+      );
 
     petsFiltered = petsFiltered.slice(
-      (pageNumber - 1) * pageSize,
-      pageNumber * pageSize
+      (parseInt(pageNumber) - 1) * parseInt(pageSize),
+      parseInt(pageNumber) * parseInt(pageSize)
     );
 
     return petsFiltered;
