@@ -1,9 +1,15 @@
 version: "3.8"
 
+networks:
+  pets-api:
+    driver: bridge
+
 services:
   cats-api-db:
     image: mysql
     restart: always
+    networks:
+      - pets-api
     env_file: .env
     environment:
       MYSQL_ROOT_PASSWORD: $DATABASE_PASSWORD
@@ -23,6 +29,10 @@ services:
       - cats-api-db
     stdin_open: true
     tty: true
+    environment:
+      DATABASE_HOST: cats-api-db
+    networks:
+      - pets-api
 
 volumes:
   db-config:
