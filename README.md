@@ -11,6 +11,8 @@ Besides that, the API is coded using TDD and SOLID principles, trying to make a 
 
 ## How can I run this API?
 
+### Local
+
 The first thing eu need to do is install the dependencies with node:
 
 ```
@@ -45,6 +47,29 @@ After, that, you are ready to go, just run:
 
 ```
 npm run dev
+```
+
+### Docker
+
+You can run this API with Docker too. For that, you can do the follow steps:
+
+First, start the containers:
+
+```
+docker compose up -d
+```
+
+Then, you need to enter the node container:
+
+```
+docker exec -it {place your container id here} /bin/bash
+```
+
+Now, you need to create and seed the database
+
+```
+npm run create-database
+npm run seed-database
 ```
 
 ## Tests

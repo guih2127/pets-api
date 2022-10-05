@@ -19,17 +19,6 @@ export class ListPetsUseCase {
   async execute(
     listPetsRequest: ListPetsRequest
   ): Promise<ListPetsResponse | null> {
-    // fazer essa validação em um arquivo separado depois
-    if (listPetsRequest.breedId === undefined) listPetsRequest.breedId = null;
-    if (listPetsRequest.genreId === undefined) listPetsRequest.genreId = null;
-    if (listPetsRequest.userId === undefined) listPetsRequest.userId = null;
-    if (listPetsRequest.name === undefined) listPetsRequest.name = null;
-    if (listPetsRequest.speciesId === undefined)
-      listPetsRequest.speciesId = null;
-    if (listPetsRequest.pageNumber === undefined)
-      listPetsRequest.pageNumber = null;
-    if (listPetsRequest.pageSize === undefined) listPetsRequest.pageSize = null;
-
     const pets = await this.petsRepository.getAll(listPetsRequest);
 
     if (!pets) return null;
