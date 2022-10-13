@@ -7,6 +7,7 @@ import { IPetsRepository } from "./interfaces/pets-repository";
 
 export class PetsRepository implements IPetsRepository {
   async getAll(listPetsRequest: ListPetsRequest): Promise<Pet[]> {
+    console.log(listPetsRequest);
     const connection = await mySqlConnection();
 
     const { name, speciesId, genreId, userId, breedId, pageSize, pageNumber } =
@@ -17,7 +18,7 @@ export class PetsRepository implements IPetsRepository {
     );
     const likeName = RepositoryUtils.createLikeParam(name);
 
-    const [rows] = await connection.execute(
+    const [rows] = await connection.query(
       `
         SELECT * FROM pets 
         WHERE name LIKE IFNULL(?, name)
